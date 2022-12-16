@@ -1,7 +1,10 @@
 # Discord-Ticket-Bot
 A Discord Bot for creating tickets!
+
 It works by sending a message in a specified channel with an emoji reply to it.
+
 When it detects someone click the reply it will make a channel called ticket.
+
 The person who made the ticket gets a private message from the bot informing them the ticket has been made.
 
 # Usage
