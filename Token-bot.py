@@ -12,7 +12,7 @@ async def on_ready():
     channel = client.get_channel(CHANNEL_ID)  # Replace CHANNEL_ID with the ID of the channel
     
     # Send the message
-    message = await channel.send("React with 🎟 to open a ticket")
+    message = await channel.send("React with 🎟 to open a ticket.")
     
     # Add a reaction to the message
     await message.add_reaction("🎟")  # Replace "🎟" with the emoji you want to use
@@ -20,7 +20,10 @@ async def on_ready():
 
 async def open_ticket(user):
     # Create the ticket channel
-    ticket_channel = await user.guild.create_text_channel(f"ticket-{user.id}")
+    ticket_channel = await user.guild.create_text_channel(f"ticket-{user.id}", overwrites={
+        user.guild.default_role: discord.PermissionOverwrite(read_messages=False),
+        user: discord.PermissionOverwrite(read_messages=True)
+    }, category=None, reason=None)
     
     # Send a message to the user
     await user.send(f"Your ticket has been opened in {ticket_channel.mention}")
